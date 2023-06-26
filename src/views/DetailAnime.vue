@@ -21,7 +21,7 @@
       <div class="anime__details__content">
         <div class="row">
           <div class="col-lg-3">
-            <div class="anime__details__pic set-bg" :data-setbg="anime.thumb">
+            <div class="anime__details__pic set-bg" :data-setbg="anime.dataThumb">
               <div class="comment"><i class="fa fa-comments"></i> 11</div>
               <div class="view"><i class="fa fa-eye"></i> 9141</div>
             </div>
@@ -137,6 +137,7 @@
       const anime = ref({
         dataDetail: [],
         dataSinopsis: [],
+        dataThumb: ''
       })
       const detail = ref([])
       onMounted(() => {
@@ -145,10 +146,11 @@
             anime.value = result.data
             anime.value.dataDetail = result.data.anime_detail.detail
             anime.value.dataSinopsis = result.data.anime_detail.sinopsis
+            anime.value.dataThumb = result.data.anime_detail.thumb
             for(let i = 0; i < anime.value.dataDetail.length; i++){
               detail.value.push(anime.value.dataDetail[i].split(':')[1])
             }
-            console.log(anime.value.episode_list);
+            console.log(anime.value.dataThumb);
           }).catch((err) => {
             console.log(err);
           });
